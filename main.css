@@ -1,6 +1,11 @@
+.space {
+  margin-top: 250px;
+}
 .button-row {
   display: flex;
   gap: 59px; /* Space between buttons */
+  flex: 1;
+  height: 200px;   /* Optional: makes buttons taller */
 }
 
 .button-row {
@@ -10,7 +15,8 @@
 
 .button-row button {
   padding: 30px 40px;
-  font-size: 23px;
+  font-size: 70px;
   cursor: pointer;
   background-color: #2fa900;
+  width: 300px;
 }
