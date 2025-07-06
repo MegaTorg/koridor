@@ -15,8 +15,13 @@
 
 .button-row button {
   padding: 30px 40px;
-  font-size: 70px;
+  font-size: 57px;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
   cursor: pointer;
-  background-color: #2fa900;
+  background-color: limegreen;
   width: 300px;
+}
+
+h1 {
+  font-family:  'Comic Sans MS', 'Comic Sans', cursive;
 }
