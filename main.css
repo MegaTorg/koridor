@@ -27,6 +27,6 @@ h1 {
 }
 
 .my-image {
-  flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;
+  flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans','cursive'; margin: 0;
 }
  
