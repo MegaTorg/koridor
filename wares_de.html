@@ -1,71 +1,43 @@
 <html>  
-  <head>
-      <title>Koridor</title>
-      <link rel="stylesheet" href="main.css">
-      <script>
-        function showOrder(event) {
-          event.preventDefault();
-          const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-          if (checkboxes.length === 0) {
-            alert("Du hast nichts bestellt!");
-            return;
-          }
-          let items = [];
-          checkboxes.forEach(cb => {
-            const img = cb.nextElementSibling;
-            const name = img.nextElementSibling?.textContent || '';
-            const price = img.nextElementSibling?.nextElementSibling?.textContent || '';
-            items.push(`${name.trim()} — ${price.trim()}`);
-          });
-          alert("Du hast bestellt:\n\n" + items.join('\n'));
-        }
-      </script>
-  </head>
+  <title>Koridor</title>
+    <head>
+        <link rel="stylesheet" href="main.css">
+    </head>
 <body>
+</script>
 <div style="display: flex; flex-direction: column; align-items: center; border: 18px solid limegreen; border-radius: 80px; padding: 35px; box-shadow: 0 0 30px 0 rgba(255,140,0,0.15);">
   <img src="Drawing.png" alt="Drawing" border="0" width="250px" style="display: block; margin: 0 auto;">
   <h1 style="font-size: 120px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; text-align: center; margin-bottom: 0;">Produkte</h1>
-  <form action="#" method="post" style="width: 100%;" onsubmit="showOrder(event)">
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-      <input type="checkbox" name="order[]" value="Labyrinth" style="margin-right: 20px; width: 40px; height: 40px;">
-      <img src="Labyrinth.jpg" alt="Labyrinth" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Labyrinth</p>
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>50 cent</b></p>
-    </div>
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-      <input type="checkbox" name="order[]" value="Notizzettel" style="margin-right: 20px; width: 40px; height: 40px;">
-      <img src="notepads2.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Notizzettel</p>
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>50 cent</b></p>
-    </div>
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-      <input type="checkbox" name="order[]" value="Riesen Papierflieger" style="margin-right: 20px; width: 40px; height: 40px;">
-      <img src="Airrplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Riesen Papierflieger</p>
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>50 cent</b></p>
-    </div>
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-      <input type="checkbox" name="order[]" value="Portmonee" style="margin-right: 20px; width: 40px; height: 40px;">
-      <img src="Wallett.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Portmonee</p>
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>10 cent</b></p>
-    </div>
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-      <input type="checkbox" name="order[]" value="Papierflieger" style="margin-right: 20px; width: 40px; height: 40px;">
-      <img src="small airplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Papierflieger</p>
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>10 cent </b></p>
-    </div>
-    <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-      <input type="checkbox" name="order[]" value="Photopapier" style="margin-right: 20px; width: 40px; height: 40px;">
-      <img src="Paer.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">20x Photopapier</p>
-      <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>1.99 Euro </b></p>
-    </div>
-    <div style="display: flex; justify-content: center; margin-top: 60px;">
-      <button type="submit" style="font-size: 40px; padding: 30px 60px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; background-color: orange;">Bestellen</button>
-    </div>
-  </form>
+  <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Labyrinth.jpg" alt="Labyrinth" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Labyrinth</p>
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>50 cent</b></p>
+  </div>
+ <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="notepads2.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Notizzettel</p>
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>50 cent</b></p>
+  </div>
+  <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Airrplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Riesen Papierflieger</p>
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>50 cent</b></p>
+  </div>
+   <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Wallett.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Portmonee</p>
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>10 cent</b></p>
+  </div>
+  <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="small airplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">1x Papierflieger</p>
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>10 cent </b></p>
+  </div>
+  <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Paer.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;">20x Photopapier</p>
+    <p style="flex: 1; font-size: 67px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; margin: 0;"><b>1.99 Euro </b></p>
+  </div>
   <div style="display: flex; justify-content: center; gap: 0; margin-top: 0;">
     <button onclick="location.href='index_de.html'" style="font-size: 40px; padding: 30px 60px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; background-color: orange;">Zurück</button>
   </div>

@@ -1,79 +1,45 @@
 <html>  
-  <head>
-      <title>Koridor</title>
-      <link rel="stylesheet" href="main.css">
-      <script>
-        function showOrder(event) {
-          event.preventDefault();
-          const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-          if (checkboxes.length === 0) {
-            alert("You didn't order anything!");
-            return;
-          }
-          let items = [];
-          checkboxes.forEach(cb => {
-            // Find the next sibling image, then the next two <p> elements for name and price
-            const img = cb.nextElementSibling;
-            const name = img.nextElementSibling?.textContent || '';
-            const price = img.nextElementSibling?.nextElementSibling?.textContent || '';
-            items.push(`${name.trim()} — ${price.trim()}`);
-          });
-          alert("You ordered:\n\n" + items.join('\n'));
-        }
-      </script>
-  </head>
+  <title>Koridor</title>
+    <head>
+        <link rel="stylesheet" href="main.css">
+    </head>
 <body>
-  <div style="display: flex; flex-direction: column; align-items: center; border: 18px solid limegreen; border-radius: 80px; padding: 35px; box-shadow: 0 0 30px 0 rgba(255,140,0,0.15);">
-    <img src="Drawing.png" alt="Drawing" border="0" width="250px" style="display: block; margin: 0 auto;">
-    <h1 style="font-size: 120px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; text-align: center;">Wares</h1>
-    
-    <form action="#" method="post" style="width: 100%;" onsubmit="showOrder(event)">
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-        <input type="checkbox" name="order[]" value="Labyrint" style="margin-right: 20px; width: 40px; height: 40px;">
-        <img src="Labyrinth.jpg" alt="Labyrinth" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-        <p class="my-image">1x Labyrint</p>
-        <p class="my-image"><b>50 cent</b></p>
-      </div>
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-        <input type="checkbox" name="order[]" value="Notepads" style="margin-right: 20px; width: 40px; height: 40px;">
-        <img src="notepads2.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-        <p class="my-image">1x Notepads</p>  
-        <p class="my-image"><b>50 cent</b></p>
-      </div>
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-        <input type="checkbox" name="order[]" value="Huge airplane" style="margin-right: 20px; width: 40px; height: 40px;">
-        <img src="Airrplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-        <p class="my-image">1x Huge airplane</p>
-        <p class="my-image"><b>50 cent</b></p>
-      </div>
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-        <input type="checkbox" name="order[]" value="Wallet" style="margin-right: 20px; width: 40px; height: 40px;">
-        <img src="Wallett.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-        <p class="my-image">1x Wallet</p>
-        <p class="my-image"><b>10 cent</b></p>
-      </div>
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-        <input type="checkbox" name="order[]" value="Airplane" style="margin-right: 20px; width: 40px; height: 40px;">
-        <img src="small airplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-        <p class="my-image">1x Airplane</p>
-        <p class="my-image"><b>10 cent </b></p>
-      </div>
-      <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
-        <input type="checkbox" name="order[]" value="Photo paper" style="margin-right: 20px; width: 40px; height: 40px;">
-        <img src="Paer.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
-        <p class="my-image">20x Photo paper</p>
-        <p class="my-image"><b>1.99 Euro </b></p>
-      </div>
-      <div style="display: flex; justify-content: center; margin-top: 60px;">
-        <button type="submit" style="font-size: 40px; padding: 30px 60px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; background-color: orange;">Order</button>
-      </div>
-    </form>
-    <div style="display: flex; justify-content: center; margin-top: 40px;">
-      <button onclick="location.href='index.html'" style="font-size: 40px; padding: 30px 60px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; background-color: orange;">Home</button>
-    </div>
+<div style="display: flex; flex-direction: column; align-items: center; border: 18px solid limegreen; border-radius: 80px; padding: 35px; box-shadow: 0 0 30px 0 rgba(255,140,0,0.15);">
+  <img src="Drawing.png" alt="Drawing" border="0" width="250px" style="display: block; margin: 0 auto;">
+  <h1 style="font-size: 120px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; text-align: center;">Wares</h1>
+  <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Labyrinth.jpg" alt="Labyrinth" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p class="my-image">1x Labyrint</p>
+    <p class="my-image"><b>50 cent</b></p>
   </div>
-</body>
-</html>
-</html></body>  </div>  </div>
+ <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="notepads2.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+     <p class="my-image">1x Notepads</p>  
+     <p class="my-image"><b>50 cent</b></p>
+  </div>
+  <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Airrplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p class="my-image">1x Huge airplane</p>
+    <p class="my-image"><b>50 cent</b></p>
+  </div>
+   <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Wallett.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p class="my-image">1x Wallet</p>
+    <p class="my-image"><b>10 cent</b></p>
+    </div>
+     <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="small airplanes.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p class="my-image">1x Airplane</p>
+    <p class="my-image"><b>10 cent </b></p>
+  </div>
+   <div style="width: 100%; display: flex; flex-direction: row; align-items: flex-start; margin-top: 40px;">
+    <img src="Paer.jpeg" alt="Notepads" style="width: 180px; height: auto; margin-right: 30px; border-radius: 20px; box-shadow: 0 0 10px #ccc; float: left;">
+    <p class="my-image">20x Photo paper</p>
+    <p class="my-image"><b>1.99 Euro </b></p>
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 100px;">
+    <button onclick="location.href='index.html'" style="font-size: 40px; padding: 30px 60px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; background-color: orange;">Home</button>
+  </div>
+</div>
 </body>
 </html>
