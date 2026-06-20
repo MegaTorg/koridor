@@ -1,17 +1,216 @@
-<html> 
-  <title>Koridor</title>
-    <head>
-        <link rel="stylesheet" href="main.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Tom's Inc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#15110D;font-family:'Space Grotesk',sans-serif;color:#15110D}
+  @keyframes ttFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(-8deg)}}
+  @keyframes ttPop{0%{opacity:0;transform:translateY(22px) scale(.95)}100%{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important}}
+
+  /* interactions (converted from the design's style-hover / style-active) */
+  .tt-nav:hover{color:#FFD200 !important}
+  .tt-lang{transition:transform .12s,box-shadow .12s}
+  .tt-lang:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 #15110D}
+  .tt-lang:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #15110D}
+  .tt-cta{transition:transform .12s,box-shadow .12s}
+  .tt-cta:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 #15110D}
+  .tt-cta:active{transform:translate(3px,3px);box-shadow:2px 2px 0 #15110D}
+  .tt-card{transition:transform .14s,box-shadow .14s}
+  .tt-card:hover{transform:translate(-3px,-3px) rotate(-.6deg);box-shadow:13px 13px 0 #15110D}
+</style>
+</head>
 <body>
-<div style="display: flex; flex-direction: column; align-items: center; border: 16px solid limegreen; border-radius: 80px; padding: 22px; box-shadow: 0 0 30px 0 rgba(255,140,0,0.15);">
-<img src="Drawing.png"
-" border="0" width="400px" style="display: block; margin: 0 auto;">
-  <h1 style="font-size:90px; margin-top:5px; text-align: center;"> Welcome <br> to Koridor </h1>
-  <div class="button-row" style="display: flex; margin-top:5px; margin-bottom:30px; justify-content: center; width: 100%;">
-    <button onclick="location.href='info.html'" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 57px;">Info</button>
-    <button onclick="location.href='wares.html'" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 57px;">Wares</button>
-    <button onclick="location.href='settings.html'"style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 57px;">Language</button>
-  </div>
-</div>
+<div id="app"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var COLORS = ['#EE2B3B', '#1FA2E0', '#3FBF6A', '#FF5FA2', '#8A5CFF', '#1FA2E0'];
+
+  var STR = {
+    en: {
+      navInfo: 'Info', navWares: 'Wares', langSwap: 'Read in',
+      welcome: 'Welcome to',
+      ctaWares: 'See the wares',
+      artHere: 'Art coming soon',
+      infoLead: 'Three Tom’s Inc is like any other company. It has workers, a boss, products, customers and much more. It started when a boy who was bored in class began making a comic about The Eater — but he did not draw well, so his friend decided to help, and then they recruited more people to help draw the comics. Now Three Tom’s Inc is a successful business.',
+      waresTitle: 'WARES', waresSub: 'Comics, caps and postcards — originals and copies.',
+      footer: 'Made by kids. Powered by comics.',
+      products: [
+        { name: 'The Eater · comic 1–4', variant: 'Copy', price: '€1.50' },
+        { name: 'The Eater · comic 1–4', variant: 'Original', price: '€15' },
+        { name: 'The Eater cap', variant: 'One size', price: '€0.50' },
+        { name: 'The Eater postcard', variant: 'Single', price: '€0.10' },
+        { name: 'The Eater special', variant: 'Copy', price: '€1.50' },
+        { name: 'The Eater special', variant: 'Original', price: '€15' }
+      ]
+    },
+    de: {
+      navInfo: 'Info', navWares: 'Waren', langSwap: 'Lesen auf',
+      welcome: 'Willkommen bei',
+      ctaWares: 'Zu den Waren',
+      artHere: 'Bild folgt bald',
+      infoLead: 'Three Tom’s Inc ist wie jede andere Firma. Sie hat Mitarbeiter, einen Chef, Produkte, Kunden und vieles mehr. Alles begann, als ein Junge, dem im Unterricht langweilig war, einen Comic über The Eater zu zeichnen begann — aber er konnte nicht gut zeichnen, also half ihm sein Freund, und dann holten sie weitere Leute dazu, um die Comics zu zeichnen. Heute ist Three Tom’s Inc ein erfolgreiches Unternehmen.',
+      waresTitle: 'WAREN', waresSub: 'Comics, Mützen und Postkarten — Originale und Kopien.',
+      footer: 'Von Kindern gemacht. Angetrieben von Comics.',
+      products: [
+        { name: 'The Eater · Comic 1–4', variant: 'Kopie', price: '€1.50' },
+        { name: 'The Eater · Comic 1–4', variant: 'Original', price: '€15' },
+        { name: 'The Eater Mütze', variant: 'Einheitsgröße', price: '€0.50' },
+        { name: 'The Eater Postkarte', variant: 'Einzeln', price: '€0.10' },
+        { name: 'The Eater Spezial', variant: 'Kopie', price: '€1.50' },
+        { name: 'The Eater Spezial', variant: 'Original', price: '€15' }
+      ]
+    }
+  };
+
+  var state = { page: 'info', lang: 'en' };
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function vals() {
+    var lang = state.lang;
+    var en = lang === 'en';
+    var t = STR[lang];
+    var page = state.page;
+    var bgMap = { info: '#FFD200', wares: '#1FA2E0' };
+    var dotMap = { info: '#EE2B3B', wares: '#FFFFFF' };
+    var products = t.products.map(function (p, i) {
+      var o = { name: p.name, variant: p.variant, price: p.price, color: COLORS[i % COLORS.length] };
+      return o;
+    });
+    return {
+      lang: lang, isEn: en, otherLang: en ? 'DE' : 'EN',
+      page: page, isInfo: page === 'info', isWares: page === 'wares',
+      stageBg: bgMap[page], dotColor: dotMap[page],
+      t: t, products: products
+    };
+  }
+
+  function infoSection(v) {
+    return ''
+      + '<main style="max-width:1100px;margin:0 auto;padding:54px 24px 90px;">'
+      +   '<section style="position:relative;display:flex;flex-wrap:wrap;gap:34px;align-items:stretch;background:#FFF7E6;border:6px solid #15110D;border-radius:8px;box-shadow:12px 12px 0 #15110D;padding:40px 38px;overflow:hidden;animation:ttPop .5s cubic-bezier(.2,.7,.2,1) both;">'
+      +     '<div style="position:absolute;top:-30px;right:110px;width:120px;height:120px;background:#FFD200;clip-path:polygon(50% 0%,61% 19%,83% 11%,79% 35%,100% 38%,84% 55%,95% 78%,70% 73%,60% 95%,50% 78%,40% 95%,30% 73%,5% 78%,16% 55%,0% 38%,21% 35%,17% 11%,39% 19%);display:grid;place-items:center;filter:drop-shadow(4px 4px 0 #15110D);font-family:\'Bangers\',cursive;font-size:24px;color:#EE2B3B;transform:rotate(-8deg);animation:ttFloat 4s ease-in-out infinite;pointer-events:none;text-align:center;line-height:.95;">HI!</div>'
+      +     '<div style="flex:1 1 360px;min-width:300px;display:flex;flex-direction:column;justify-content:center;gap:18px;">'
+      +       '<span style="font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;text-transform:uppercase;color:#1FA2E0;">' + esc(v.t.welcome) + '</span>'
+      +       '<h1 style="margin:0;font-family:\'Bangers\',cursive;font-size:clamp(48px,7.5vw,98px);line-height:.9;letter-spacing:2px;color:#FFD200;-webkit-text-stroke:4px #15110D;text-shadow:8px 8px 0 #EE2B3B;">THREE TOM’S INC</h1>'
+      +       '<p style="margin:6px 0 0;font-size:18px;line-height:1.65;max-width:520px;color:#2a2118;">' + esc(v.t.infoLead) + '</p>'
+      +       '<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;">'
+      +         '<button onclick="TT.go(\'wares\')" class="tt-cta" style="display:inline-flex;align-items:center;gap:10px;font-family:\'Bangers\',cursive;font-size:25px;letter-spacing:1px;color:#fff;background:#EE2B3B;border:4px solid #15110D;border-radius:8px;padding:11px 24px;box-shadow:6px 6px 0 #15110D;cursor:pointer;">' + esc(v.t.ctaWares) + ' →</button>'
+      +       '</div>'
+      +     '</div>'
+      +     '<div style="flex:0 1 340px;min-width:280px;position:relative;border:5px solid #15110D;border-radius:6px;background:repeating-linear-gradient(45deg,#fff 0 14px,#f2e2b8 14px 28px);box-shadow:inset 0 0 0 4px #fff;min-height:340px;display:grid;place-items:center;overflow:hidden;">'
+      +       '<div style="position:absolute;inset:0;background-image:radial-gradient(#1FA2E0 3px,transparent 3.4px);background-size:26px 26px;opacity:.22;"></div>'
+      +       '<div style="position:relative;text-align:center;padding:20px;">'
+      +         '<div style="font-family:\'Bangers\',cursive;font-size:46px;line-height:.95;color:#1FA2E0;-webkit-text-stroke:3px #15110D;text-shadow:5px 5px 0 #FFD200;transform:rotate(-4deg);">THE EATER</div>'
+      +         '<div style="margin-top:14px;display:inline-block;background:#15110D;color:#FFF7E6;font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;border-radius:4px;transform:rotate(2deg);">' + esc(v.t.artHere) + '</div>'
+      +       '</div>'
+      +     '</div>'
+      +   '</section>'
+      + '</main>';
+  }
+
+  function productCard(p, t) {
+    return ''
+      + '<div class="tt-card" style="position:relative;background:#FFF7E6;border:5px solid #15110D;border-radius:8px;box-shadow:9px 9px 0 #15110D;overflow:visible;animation:ttPop .5s cubic-bezier(.2,.7,.2,1) both;">'
+      +   '<div style="position:absolute;top:-20px;right:-12px;z-index:5;width:92px;height:92px;background:#FFD200;clip-path:polygon(50% 0%,61% 19%,83% 11%,79% 35%,100% 38%,84% 55%,95% 78%,70% 73%,60% 95%,50% 78%,40% 95%,30% 73%,5% 78%,16% 55%,0% 38%,21% 35%,17% 11%,39% 19%);display:grid;place-items:center;filter:drop-shadow(3px 3px 0 #15110D);transform:rotate(9deg);">'
+      +     '<span style="font-family:\'Bangers\',cursive;font-size:21px;color:#EE2B3B;text-align:center;line-height:.95;">' + esc(p.price) + '</span>'
+      +   '</div>'
+      +   '<div style="position:relative;margin:14px 14px 0;height:170px;border:4px solid #15110D;border-radius:5px;background:repeating-linear-gradient(45deg,#fff 0 13px,#f2e2b8 13px 26px);display:grid;place-items:center;overflow:hidden;">'
+      +     '<div style="position:absolute;inset:0;background-image:radial-gradient(' + p.color + ' 2.6px,transparent 3px);background-size:22px 22px;opacity:.2;"></div>'
+      +     '<span style="position:relative;font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#15110D;background:#fff;border:2px solid #15110D;border-radius:4px;padding:6px 10px;transform:rotate(-6deg);box-shadow:3px 3px 0 #15110D;">' + esc(t.artHere) + '</span>'
+      +   '</div>'
+      +   '<div style="height:10px;margin:14px 0 0;background:' + p.color + ';border-top:4px solid #15110D;border-bottom:4px solid #15110D;"></div>'
+      +   '<div style="padding:16px 18px 20px;">'
+      +     '<div style="display:inline-block;font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#fff;background:#15110D;border-radius:4px;padding:3px 8px;margin-bottom:8px;">1× · ' + esc(p.variant) + '</div>'
+      +     '<h3 style="margin:0;font-family:\'Bangers\',cursive;font-size:28px;letter-spacing:.5px;line-height:1;color:#15110D;">' + esc(p.name) + '</h3>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  function waresSection(v) {
+    var cards = v.products.map(function (p) { return productCard(p, v.t); }).join('');
+    return ''
+      + '<main style="max-width:1180px;margin:0 auto;padding:54px 24px 90px;">'
+      +   '<div style="display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:8px;">'
+      +     '<h1 style="margin:0;font-family:\'Bangers\',cursive;font-size:clamp(54px,8vw,96px);line-height:.9;letter-spacing:2px;color:#FFD200;-webkit-text-stroke:4px #15110D;text-shadow:8px 8px 0 #EE2B3B;">' + esc(v.t.waresTitle) + '</h1>'
+      +   '</div>'
+      +   '<p style="margin:0 0 38px;font-size:19px;line-height:1.5;max-width:560px;color:#0c2f44;font-weight:500;">' + esc(v.t.waresSub) + '</p>'
+      +   '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px;">' + cards + '</div>'
+      + '</main>';
+  }
+
+  function navUnderline() {
+    return '<span style="position:absolute;left:6px;right:6px;bottom:-2px;height:6px;background:#FFD200;border:2px solid #15110D;border-radius:4px;"></span>';
+  }
+
+  function render() {
+    var v = vals();
+    document.documentElement.lang = v.lang;
+
+    var html = ''
+      + '<div style="position:relative;min-height:100vh;overflow-x:hidden;font-family:\'Space Grotesk\',sans-serif;color:#15110D;background:' + v.stageBg + ';transition:background .35s cubic-bezier(.2,.7,.2,1);">'
+      +   '<div style="position:absolute;inset:0;background-image:radial-gradient(' + v.dotColor + ' 2.2px, transparent 2.6px);background-size:24px 24px;opacity:.16;pointer-events:none;z-index:0;"></div>'
+      +   '<div style="position:relative;z-index:2;">'
+
+      // ---- NAV ----
+      +     '<header style="position:sticky;top:0;z-index:30;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:14px 26px;background:#EE2B3B;border-bottom:5px solid #15110D;box-shadow:0 6px 0 rgba(21,17,13,.18);">'
+      +       '<button onclick="TT.go(\'info\')" style="display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;padding:0;">'
+      +         '<span style="font-family:\'Bangers\',cursive;font-size:30px;letter-spacing:1.5px;color:#fff;-webkit-text-stroke:2px #15110D;line-height:1;">THREE TOM’S</span>'
+      +         '<span style="width:30px;height:30px;display:inline-grid;place-items:center;background:#FFD200;border:3px solid #15110D;border-radius:50%;font-family:\'Bangers\',cursive;font-size:15px;color:#15110D;box-shadow:3px 3px 0 #15110D;">INC</span>'
+      +       '</button>'
+      +       '<nav style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'
+      +         '<button onclick="TT.go(\'info\')" class="tt-nav" style="position:relative;font-family:\'Bangers\',cursive;font-size:22px;letter-spacing:1px;color:#fff;background:none;border:none;cursor:pointer;padding:6px 10px;-webkit-text-stroke:1px #15110D;">' + esc(v.t.navInfo) + (v.isInfo ? navUnderline() : '') + '</button>'
+      +         '<button onclick="TT.go(\'wares\')" class="tt-nav" style="position:relative;font-family:\'Bangers\',cursive;font-size:22px;letter-spacing:1px;color:#fff;background:none;border:none;cursor:pointer;padding:6px 10px;-webkit-text-stroke:1px #15110D;">' + esc(v.t.navWares) + (v.isWares ? navUnderline() : '') + '</button>'
+      +         '<button onclick="TT.toggleLang()" class="tt-lang" style="margin-left:6px;font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;color:#15110D;background:#FFD200;border:3px solid #15110D;border-radius:6px;cursor:pointer;padding:7px 12px;box-shadow:4px 4px 0 #15110D;">' + esc(v.t.langSwap) + ' ' + esc(v.otherLang) + '</button>'
+      +       '</nav>'
+      +     '</header>'
+
+      // ---- PAGE ----
+      +     (v.isInfo ? infoSection(v) : '')
+      +     (v.isWares ? waresSection(v) : '')
+
+      // ---- FOOTER ----
+      +     '<footer style="background:#15110D;border-top:6px solid #15110D;padding:30px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">'
+      +       '<div style="display:flex;align-items:center;gap:8px;">'
+      +         '<span style="font-family:\'Bangers\',cursive;font-size:28px;letter-spacing:1.5px;color:#FFD200;">THREE TOM’S</span>'
+      +         '<span style="width:28px;height:28px;display:inline-grid;place-items:center;background:#EE2B3B;border:3px solid #FFF7E6;border-radius:50%;font-family:\'Bangers\',cursive;font-size:13px;color:#fff;">INC</span>'
+      +       '</div>'
+      +       '<span style="font-family:\'Space Grotesk\',sans-serif;font-size:14px;letter-spacing:1px;color:#FFF7E6;opacity:.85;">' + esc(v.t.footer) + '</span>'
+      +     '</footer>'
+
+      +   '</div>'
+      + '</div>';
+
+    document.getElementById('app').innerHTML = html;
+  }
+
+  window.TT = {
+    go: function (p) {
+      state.page = p;
+      render();
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+    },
+    toggleLang: function () {
+      state.lang = state.lang === 'en' ? 'de' : 'en';
+      render();
+    }
+  };
+
+  render();
+})();
+</script>
 </body>
+</html>
